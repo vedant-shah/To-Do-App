@@ -4,28 +4,34 @@ shownotes();
 // if a user adds a task add it to the local storage
 let additem = document.getElementById('additem');
 additem.addEventListener('click', function (e) {
-    let text = document.getElementById('addtxt');
-    let title = document.getElementById('titletxt');
-    let titles = localStorage.getItem('titles')
-    let notes = localStorage.getItem('notes');
-    if (titles == null)
-        titlesObj = [];
-    else {
-        titlesObj = JSON.parse(titles);
-    }
+    if (document.getElementById('titletxt').value == '' || document.getElementById('addtxt').value == '') {
+        alert('Missing Parameters');
+        return;
+    } else {
 
-    if (notes == null)
-        notesObj = [];
-    else {
-        notesObj = JSON.parse(notes);
+        let text = document.getElementById('addtxt');
+        let title = document.getElementById('titletxt');
+        let titles = localStorage.getItem('titles')
+        let notes = localStorage.getItem('notes');
+        if (titles == null)
+            titlesObj = [];
+        else {
+            titlesObj = JSON.parse(titles);
+        }
+
+        if (notes == null)
+            notesObj = [];
+        else {
+            notesObj = JSON.parse(notes);
+        }
+        notesObj.push(addtxt.value);
+        titlesObj.push(title.value);
+        localStorage.setItem('titles', JSON.stringify(titlesObj));
+        localStorage.setItem('notes', JSON.stringify(notesObj));
+        title.value = "";
+        addtxt.value = "";
+        shownotes();
     }
-    notesObj.push(addtxt.value);
-    titlesObj.push(title.value);
-    localStorage.setItem('titles', JSON.stringify(titlesObj));
-    localStorage.setItem('notes', JSON.stringify(notesObj));
-    title.value = "";
-    addtxt.value = "";
-    shownotes();
 });
 
 function shownotes() {
@@ -80,7 +86,7 @@ function deleteelm(index) {
     }
 
     notesObj.splice(index, 1);
-    titlesObj.splice(index,1)
+    titlesObj.splice(index, 1)
     localStorage.setItem('notes', JSON.stringify(notesObj));
     localStorage.setItem('titles', JSON.stringify(titlesObj));
     shownotes();
@@ -96,57 +102,56 @@ search.addEventListener('input', function () {
         if (cardtxt.includes(input))
             element.style.display = "block";
         else
-        element.style.display = "none";
+            element.style.display = "none";
     })
 })
 
 function modify(index) {
-    console.log("104 "+index);
+    console.log("104 " + index);
     let moditxt = document.createElement('input');
     moditxt.className = 'form-control my-2';
     moditxt.type = 'text';
     moditxt.rows = '3';
     moditxt.id = 'modtxt'
     let conf = document.createElement('button');
-    conf.className='btn btn-primary';
-    conf.innerText='Confirm';
-    conf.id='conf'
-    
+    conf.className = 'btn btn-primary';
+    conf.innerText = 'Confirm';
+    conf.id = 'conf'
+
     let cdbdy = document.getElementsByClassName('cdbdy')[index];
     let mod_buttons = document.getElementsByClassName('modify');
     console.log(mod_buttons);
-        
-    
-    Array.from(mod_buttons).forEach((element)=>{
-        if(element.id==index){
+
+
+    Array.from(mod_buttons).forEach((element) => {
+        if (element.id == index) {
 
             // continue;   
-        }
-        else{
-            element.style.display="none";
+        } else {
+            element.style.display = "none";
         }
     })
-    
+
 
     cdbdy.appendChild(moditxt);
     cdbdy.appendChild(conf);
-    
+
     let notes = localStorage.getItem('notes');
     if (notes == null)
-    notesObj = [];
+        notesObj = [];
     else {
         notesObj = JSON.parse(notes);
     }
     let conf1 = document.getElementById('conf');
-    conf1.addEventListener('click',function(){
+    conf1.addEventListener('click', function () {
         notesObj[index] = modtxt.value;
         localStorage.setItem('notes', JSON.stringify(notesObj));
         shownotes();
-        
+
     })
-    
+
     // let flag = document.addEventListener('click')
     console.log(index)
-    
+
 
 }
