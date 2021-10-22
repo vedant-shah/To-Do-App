@@ -6,3 +6,4 @@ This is a simple project where users can add/delete/Modify Tasks, to make a **_T
 * A button to modify the task is available, that impliments the updation feature. **_Update_**
 * There is a button to delete the task, on clicking the card will be removed. **_Delete_**
   * The code makes use of local storage feature to store values.
+* User can search for created notes, using the search bar on the navigation panel.
