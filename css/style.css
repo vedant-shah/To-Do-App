@@ -1,0 +1,116 @@
+body,
+.card,
+.form-control,
+.form-control:focus {
+  background-color: black;
+  color: whitesmoke;
+  border: 0;
+  outline: 0 !important;
+  border: 0 !important;
+}
+.card {
+  background-color: rgba(32, 33, 36, 1) !important;
+  border: 0 !important;
+}
+.cbutton {
+  border: 0 !important;
+}
+#notes {
+  padding: 0;
+}
+#yourtasks {
+  padding: 0;
+}
+@media only screen and (max-width: 600px) {
+  #notes {
+    display: flex;
+    justify-content: center;
+  }
+}
+.form-control {
+  border: 0.5px solid grey;
+}
+nav {
+  background-color: rgba(32, 33, 36, 1) !important;
+}
+.wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.notecard {
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+#additem {
+  padding: 0.8em 1.8em;
+  border: 2px solid #17c3b2;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  transition: 0.3s;
+  z-index: 1;
+  font-family: inherit;
+  color: #17c3b2;
+}
+#additem::before {
+  content: "";
+  width: 0;
+  height: 300%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: #17c3b2;
+  transition: 0.5s ease;
+  display: block;
+  z-index: -1;
+}
+
+#additem:hover::before {
+  width: 105%;
+}
+
+#additem:hover {
+  color: #111;
+}
+.cbutton {
+  position: relative;
+  overflow: hidden;
+  height: 2rem;
+  padding: 0 1.2rem;
+  border-radius: 1.5rem;
+  background: #3d3a4e;
+  background-size: 400%;
+  color: #fff;
+}
+.button-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cbutton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(82.3deg, #20bf55 10.8%, #01baef 94.3%);
+  /* background: linear-gradient(
+    82.3deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  ); */
+  transition: all 0.475s;
+}
+
+.cbutton:hover::before {
+  transform: scaleX(1);
+}
